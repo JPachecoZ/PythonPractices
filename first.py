@@ -19,10 +19,28 @@ def get_positive(prompt):
 
 
 def valid_vote(name):
-  print(name)
+  for element in candidates:
+    if element["name"] == name:
+      element["votes"] += 1
+      return True
+  
+  return False
 
 def print_winner():
-  print(candidates)
+  winners = []
+  winner = 0
+  for element in candidates:
+    if element["votes"] > winner:
+      winner = element["votes"]
+      winners = [element["name"]]
+    elif element["votes"] == winner:
+      winners.append(element["name"])
+  print("Winners: ", ", ".join(winners)) if len(winners)> 1 else print("Winners: ", winners[0])
+  
+
+
+
+
 
 names = get_list("Candidates names: ", 1, 9)
 
@@ -44,4 +62,4 @@ for i in range(1, voters_count + 1):
 
 print("-" * 20)
 
-print_winner
+print_winner()
