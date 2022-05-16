@@ -9,7 +9,14 @@ def get_list(prompt, min, max):
   return candidates_list
 
 def get_positive(prompt):
-  print(prompt)
+  voters = input(prompt)
+  while voters.isdigit() == False or int(voters) <= 0:
+    print("Number should be positive")
+    voters = input(prompt)
+
+  return int(voters)
+    
+
 
 def valid_vote(name):
   print(name)
@@ -24,8 +31,9 @@ for i in names:
   candidates.append(candidate)
 
 voters_count = get_positive("Number of voters: ")
+print(voters_count)
 
-print("-") * 20
+print("-" * 20)
 
 for i in range(1, voters_count + 1):
   prompt = "Voter " + str(i) + ": "
@@ -34,6 +42,6 @@ for i in range(1, voters_count + 1):
     print("Invalid vote")
     name = input(prompt)
 
-print("-") * 20
+print("-" * 20)
 
 print_winner
